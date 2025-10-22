@@ -3,8 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Grocery.App.ViewModels"
              x:Class="Grocery.App.Views.ProductView"
+             x:DataType="vm:ProductViewModel"
              Title="ProductView">
-    
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Nieuw Product" 
+                     Command="{Binding AddNewProductCommand}"
+                     IsVisible="{Binding IsAdmin}"
+                     IconImageSource="{FontImage Glyph='&#xf055;', Color=Black, Size=22}" />
+    </ContentPage.ToolbarItems>
+
     <Shell.TitleView>
         <Grid>
             <Label Text="Producten" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />
@@ -48,7 +56,7 @@
                             </Label.Triggers>
                         </Label>
                         <Label Grid.Column="2" Text="{Binding ShelfLife}" HorizontalOptions="End"/>
-                        <Label Grid.Column="3" Text="{Binding Price}" HorizontalOptions="End"/>
+                        <Label Grid.Column="3" Text="{Binding Price, StringFormat='{}{0:F2}'}" HorizontalOptions="End"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
