@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Grocery.App.ViewModels"
+             x:Class="Grocery.App.Views.NewProductView"
+             x:DataType="vm:NewProductViewModel"
+             Title="Nieuw Product">
+
+    <Shell.TitleView>
+        <Grid>
+            <Label Text="Nieuw Product Toevoegen" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />
+        </Grid>
+    </Shell.TitleView>
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <Label Text="Vul de productgegevens in:" FontSize="18" FontAttributes="Bold"/>
+
+        <Label Text="Productnaam:" FontAttributes="Bold"/>
+        <Entry Placeholder="Voer productnaam in" 
+               Text="{Binding ProductName}"/>
+
+        <Label Text="Voorraad:" FontAttributes="Bold"/>
+        <Entry Placeholder="Voer voorraad in (getal)" 
+               Text="{Binding Stock}"
+               Keyboard="Numeric"/>
+
+        <Label Text="Houdbaarheidsdatum:" FontAttributes="Bold"/>
+        <Entry Placeholder="YYYY-MM-DD" 
+               Text="{Binding ShelfLife}"/>
+
+        <Label Text="Prijs:" FontAttributes="Bold"/>
+        <Entry Placeholder="Voer prijs in (bijv. 2.99)" 
+               Text="{Binding Price}"
+               Keyboard="Numeric"/>
+
+        <Label Text="{Binding ErrorMessage}" 
+               TextColor="Red" 
+               FontAttributes="Bold"
+               IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}"/>
+
+        <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,20,0,0">
+            <Button Text="Opslaan" 
+                    Command="{Binding CreateProductCommand}"
+                    BackgroundColor="#512BD4"
+                    TextColor="White"
+                    HorizontalOptions="FillAndExpand"/>
+
+            <Button Text="Annuleren" 
+                    Command="{Binding CancelCommand}"
+                    BackgroundColor="#808080"
+                    TextColor="White"
+                    HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>
